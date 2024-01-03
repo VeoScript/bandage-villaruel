@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import testingReducer from "./slices/testing/testingSlice";
-import productsReducer from "./slices/products/queries";
+import productsReducer from "./slices/products";
 
 export const store = configureStore({
   reducer: {
