@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function NavBar(): JSX.Element {
   return (
@@ -124,7 +125,7 @@ export default function NavBar(): JSX.Element {
       </div>
       <div className="flex flex-row items-center justify-between w-full px-6 py-3 text-accent-2 bg-accent-1">
         <div className="flex flex-row items-center justify-start w-full gap-x-[10rem]">
-          <h3 className="font-bold text-[24px]">Bandage</h3>
+          <Logo />
           <ul className="flex flex-row items-center justify-center gap-x-5">
             <li>
               <Link className="font-semibold text-sm leading-[0.2px] text-neutral-500" href="/">
