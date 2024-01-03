@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function RateStars() {
   return (
     <div className="flex flex-row items-center gap-x-3">
