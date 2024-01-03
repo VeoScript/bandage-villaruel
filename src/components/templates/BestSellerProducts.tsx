@@ -14,7 +14,15 @@ export default function BestSellerProducts(): JSX.Element {
       <div className="flex flex-wrap justify-center w-full gap-5">
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -28,7 +36,15 @@ export default function BestSellerProducts(): JSX.Element {
 
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -41,7 +57,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -54,7 +78,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -67,7 +99,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -80,7 +120,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -93,7 +141,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>
@@ -106,7 +162,15 @@ export default function BestSellerProducts(): JSX.Element {
         </div>
         <div className="flex flex-col items-center w-[183px] gap-y-5">
           <div className="relative w-[183px] h-[238px]">
-            <Image priority fill className="object-fill" src="/images/image3.webp" alt="Image3" />
+            <Image
+              fill
+              className="object-fill"
+              src="/images/image3.webp"
+              alt="Image3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={"/images/image3.webp"}
+            />
           </div>
           <div className="flex flex-col items-center w-full gap-y-3">
             <h2 className="font-bold text-[16px]">Graphic Design</h2>

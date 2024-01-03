@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 
 import clsx from "clsx";
 import "./globals.css";
+import StoreProvider from "./_redux/StoreProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -18,10 +19,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <html lang="en">
-      <body className={clsx("font-montserrat text-accent-2 bg-accent-1", montserrat.variable)}>
-        {children}
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={clsx("font-montserrat text-accent-2 bg-accent-1", montserrat.variable)}>
+          {children}
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

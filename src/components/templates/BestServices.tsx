@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function BestServices(): JSX.Element {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl h-screen p-5 gap-y-[5rem]">
