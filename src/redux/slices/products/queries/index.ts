@@ -8,7 +8,7 @@ export const productsSlice = createApi({
     baseUrl: "https://dummyjson.com/",
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<any[], void>({
+    getProducts: builder.query<undefined, void>({
       query: () => `products`,
     }),
   }),
