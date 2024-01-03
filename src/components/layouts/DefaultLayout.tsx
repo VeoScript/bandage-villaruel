@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import dynamic from "next/dynamic";
 
-import NavBar from "../ui/NavBar";
-import Footer from "../ui/Footer";
+const NavBar = dynamic(() => import("../ui/NavBar"));
+const Footer = dynamic(() => import("../ui/Footer"));
 
 interface DefaultLayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function DefaultLayout({ children }: DefaultLayoutProps): JSX.Element {
