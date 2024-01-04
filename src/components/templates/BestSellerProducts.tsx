@@ -1,34 +1,52 @@
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 import { useGetProductsQuery } from "~/redux/slices/products";
 
-export default function BestSellerProducts(): JSX.Element {
+interface BestSellerProductsProps {
+  isDisplayHeaderText?: boolean;
+  isPaginate: boolean;
+}
+
+export default function BestSellerProducts({
+  isDisplayHeaderText,
+  isPaginate,
+}: BestSellerProductsProps): JSX.Element {
+  const pathname = usePathname();
+
   const limit = 10;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { data, isLoading } = useGetProductsQuery({
-    pageNumber: currentPage,
+    pageNumber: isPaginate ? currentPage : 1,
     limit,
   });
 
   return (
     <div className="flex flex-col items-center w-full max-w-6xl h-full gap-y-10">
-      <div className="flex flex-col items-center w-full gap-y-3">
-        <h2 className="font-normal text-[20px] text-neutral-500">Featured Products</h2>
-        <h2 className="font-bold text-[24px] text-accent-2 uppercase">Bestseller Products</h2>
-        <h2 className="font-normal text-[14px] text-neutral-500">
-          Problems trying to resolve the conflict between
-        </h2>
-      </div>
+      {isDisplayHeaderText && (
+        <div className="flex flex-col items-center w-full gap-y-3">
+          <h2 className="font-normal text-[20px] text-neutral-500">Featured Products</h2>
+          <h2 className="font-bold text-[24px] text-accent-2 uppercase">Bestseller Products</h2>
+          <h2 className="font-normal text-[14px] text-neutral-500">
+            Problems trying to resolve the conflict between
+          </h2>
+        </div>
+      )}
       <div className="flex flex-wrap justify-center w-full gap-5">
         {isLoading ? (
           <div>Loading...</div>
         ) : (
           <>
-            {data.products.map((product: any, i: number) => (
-              <div key={i} className="flex flex-col items-center w-[183px] gap-y-5">
+            {data.products.map((product: any) => (
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                className="flex flex-col items-center w-[183px] gap-y-5"
+              >
                 <div className="relative w-[183px] h-[238px]">
                   <Image
                     priority
@@ -51,19 +69,23 @@ export default function BestSellerProducts(): JSX.Element {
                     </span>
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </>
         )}
       </div>
-      {data?.products?.length < data?.total - limit && (
-        <button
-          type="button"
-          className="w-auto mt-10 px-10 py-5 rounded-[5px] border border-accent-4 uppercase font-bold text-[14px] text-accent-4 tracking-[0.2px] hover:opacity-50"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Load More Products
-        </button>
+      {isPaginate && (
+        <>
+          {data?.products?.length < data?.total - limit && (
+            <button
+              type="button"
+              className="w-auto mt-10 px-10 py-5 rounded-[5px] border border-accent-4 uppercase font-bold text-[14px] text-accent-4 tracking-[0.2px] hover:opacity-50"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              Load More Products
+            </button>
+          )}
+        </>
       )}
     </div>
   );

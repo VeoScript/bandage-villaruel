@@ -8,8 +8,8 @@ export const productsSlice = createApi({
     baseUrl: "https://dummyjson.com/",
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<any, {pageNumber: number, limit: number}>({
-      query: ({pageNumber, limit}) => `products?limit=${limit}&skip=${pageNumber * 10}`,
+    getProducts: builder.query<any, { pageNumber: number; limit: number }>({
+      query: ({ pageNumber, limit }) => `products?limit=${limit}&skip=${pageNumber * 10}`,
       // Only have one cache entry because the arg always maps to one string
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
@@ -20,8 +20,12 @@ export const productsSlice = createApi({
       },
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      }
+        if (currentArg?.pageNumber === 1) {
+          return false;
+        } else {
+          return currentArg?.pageNumber !== previousArg?.pageNumber;
+        }
+      },
     }),
   }),
 });

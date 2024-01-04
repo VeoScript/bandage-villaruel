@@ -1,10 +1,19 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="flex flex-row items-center justify-between w-full px-[195px] py-10 bg-[#FAFAFA]">
+      <div
+        className={clsx(
+          pathname === "/" ? " bg-[#FAFAFA] px-[195px]" : "max-w-6xl bg-accent-1 border-b border-neutral-200",
+          "flex flex-row items-center justify-between w-full py-10",
+        )}
+      >
         <div className="flex flex-row items-center justify-start w-full">
           <Logo />
         </div>
@@ -133,7 +142,10 @@ export default function Footer() {
                 placeholder="Your Email"
                 className="p-5 outline-none text-[14px] bg-neutral-50"
               />
-              <button type="button" className="p-5 outline-none text-[14px] text-white bg-accent-4 hover:opacity-50">
+              <button
+                type="button"
+                className="p-5 outline-none text-[14px] text-white bg-accent-4 hover:opacity-50"
+              >
                 Subscribe
               </button>
             </div>
