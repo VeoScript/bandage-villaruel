@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useGetProductsQuery } from "~/redux/slices/products";
+import { useGetProductsQuery } from "~/redux/slices/services/productsApi";
 
 interface BestSellerProductsProps {
   isDisplayHeaderText?: boolean;

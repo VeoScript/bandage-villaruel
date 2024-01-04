@@ -27,9 +27,18 @@ export const productsSlice = createApi({
         }
       },
     }),
+    getProductById: builder.query<any, number>({
+      query: (id) => `products/${id}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsSlice;
+export const { useGetProductsQuery, useGetProductByIdQuery } = productsSlice;
 
 export default productsSlice;
