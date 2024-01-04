@@ -1,12 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import DefaultLayout from "~/components/layouts/DefaultLayout";
-import MainBanner from "~/components/templates/MainBanner";
-import BestSellerProducts from "~/components/templates/BestSellerProducts";
-import BestServices from "~/components/templates/BestServices";
-import FeaturedPosts from "~/components/templates/FeaturedPosts";
-import Testimony from "~/components/templates/Testimony";
-import CallToActionBanner from "~/components/templates/CallToActionBanner";
+
+const MainBanner = dynamic(() => import("~/components/templates/MainBanner"));
+const BestSellerProducts = dynamic(() => import("~/components/templates/BestSellerProducts"));
+const BestServices = dynamic(() => import("~/components/templates/BestServices"));
+const FeaturedPosts = dynamic(() => import("~/components/templates/FeaturedPosts"));
+const Testimony = dynamic(() => import("~/components/templates/Testimony"));
+const CallToActionBanner = dynamic(() => import("~/components/templates/CallToActionBanner"));
 
 // import type { RootState } from "~/redux/store";
 // import { useSelector, useDispatch } from "react-redux";
@@ -19,7 +22,7 @@ export default function Home(): JSX.Element {
   return (
     <DefaultLayout>
       <MainBanner />
-      <BestSellerProducts />
+      <BestSellerProducts isDisplayHeaderText isPaginate />
       <BestServices />
       <FeaturedPosts />
       <Testimony />
