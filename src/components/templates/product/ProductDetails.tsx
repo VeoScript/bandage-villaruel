@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,6 +7,7 @@ import RateStars from "~/components/ui/RateStars";
 
 import { useParams } from "next/navigation";
 import { useGetProductByIdQuery } from "~/redux/slices/services/productsApi";
+import AddToCart from "~/components/ui/buttons/AddToCart";
 
 export default function ProductDetails(): JSX.Element {
   const { productId } = useParams();
@@ -53,12 +54,13 @@ export default function ProductDetails(): JSX.Element {
           <div className="flex flex-col w-full h-full gap-y-5">
             <div className="relative w-[506px] h-[450px]">
               <Image
-                priority
                 fill
                 className="object-cover"
                 src={selectedImage ? selectedImage : product.thumbnail}
                 alt="Product thumbnail"
                 sizes="(max-width: 506px) 100vw, (max-width: 506px) 50vw, 33vw"
+                placeholder="blur"
+                blurDataURL={selectedImage ? selectedImage : product.thumbnail}
               />
             </div>
             <div className="flex flex-row items-center justify-start w-full max-w-[506px] gap-x-5 overflow-y-auto">
@@ -71,12 +73,13 @@ export default function ProductDetails(): JSX.Element {
                 >
                   <div className="relative w-[100px] h-[75px] bg-neutral-200">
                     <Image
-                      priority
                       fill
                       className="object-cover"
                       src={image}
                       alt="Product image"
                       sizes="(max-width: 100px) 100vw, (max-width: 100px) 50vw, 33vw"
+                      placeholder="blur"
+                      blurDataURL={image}
                     />
                   </div>
                 </button>
@@ -145,9 +148,12 @@ export default function ProductDetails(): JSX.Element {
                     />
                   </svg>
                 </button>
-                <button
-                  type="button"
+                <AddToCart
                   className="flex flex-row items-center justify-center w-10 h-10 outline-none rounded-full border border-neutral-200 bg-accent-1 hover:opacity-50"
+                  id={product.id}
+                  image={product.thumbnail}
+                  title={product.title}
+                  quantity={1}
                 >
                   <svg
                     width="20"
@@ -161,7 +167,7 @@ export default function ProductDetails(): JSX.Element {
                       fill="#252B42"
                     />
                   </svg>
-                </button>
+                </AddToCart>
                 <button
                   type="button"
                   className="flex flex-row items-center justify-center w-10 h-10 outline-none rounded-full border border-neutral-200 bg-accent-1 hover:opacity-50"
