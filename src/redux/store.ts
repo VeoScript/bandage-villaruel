@@ -3,9 +3,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-import testingReducer from "./slices/testing/testingSlice";
-import cartReducer from "./slices/cart/cartSlice";
-import productsReducer from "./slices/products";
+import testingReducer from "./slices/features/testingSlice";
+import cartReducer from "./slices/features/cartSlice";
+import productsReducer from "./slices/services/productsApi";
 
 export const store = configureStore({
   reducer: {
