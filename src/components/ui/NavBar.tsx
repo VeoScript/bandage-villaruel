@@ -52,7 +52,7 @@ export default function NavBar(): JSX.Element {
           </div>
           <div className="flex flex-row items-center justify-end w-full gap-x-3 text-white">
             <h3 className="font-semibold text-[14px]">Follow Us :</h3>
-            <Link href="https://www.facebook.com/" target="_blank">
+            <Link href="https://www.instagram.com/" target="_blank">
               <svg
                 className="w-4 h-4"
                 viewBox="0 0 16 16"
@@ -65,7 +65,7 @@ export default function NavBar(): JSX.Element {
                 />
               </svg>
             </Link>
-            <Link href="https://www.facebook.com/" target="_blank">
+            <Link href="https://www.youtube.com/" target="_blank">
               <svg
                 className="w-4 h-4"
                 viewBox="0 0 17 16"
@@ -105,7 +105,7 @@ export default function NavBar(): JSX.Element {
                 </defs>
               </svg>
             </Link>
-            <Link href="https://www.facebook.com/" target="_blank">
+            <Link href="https://www.twitter.com/" target="_blank">
               <svg
                 className="w-4 h-4"
                 viewBox="0 0 17 16"

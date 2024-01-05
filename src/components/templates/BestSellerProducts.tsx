@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+
+import ProductListLoader from "../ui/skeletons/ProductListLoader";
 
 import { useGetProductsQuery } from "~/redux/slices/services/productsApi";
 
@@ -14,8 +15,6 @@ export default function BestSellerProducts({
   isDisplayHeaderText,
   isPaginate,
 }: BestSellerProductsProps): JSX.Element {
-  const pathname = usePathname();
-
   const limit = 10;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -38,7 +37,7 @@ export default function BestSellerProducts({
       )}
       <div className="flex flex-wrap justify-center w-full gap-5">
         {isLoading ? (
-          <div>Loading...</div>
+          <ProductListLoader />
         ) : (
           <>
             {data.products.map((product: any) => (
@@ -74,7 +73,7 @@ export default function BestSellerProducts({
           </>
         )}
       </div>
-      {isPaginate && (
+      {!isLoading && isPaginate && (
         <>
           {data?.products?.length < data?.total - limit && (
             <button
