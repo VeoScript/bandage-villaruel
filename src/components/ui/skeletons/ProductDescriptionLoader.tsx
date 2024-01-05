@@ -1,13 +1,13 @@
 export default function ProductDescriptionLoader(): JSX.Element {
   return (
-    <div className="flex flex-col items-center w-full h-full bg-[#FAFAFA]">
+    <div className="flex flex-col items-center w-full h-full p-10 md:p-3 bg-[#FAFAFA]">
       <div className="flex flex-col items-center w-full max-w-6xl h-full gap-y-5">
-        <div className="flex flex-row items-center w-full pt-5 gap-x-5">
+        <div className="flex flex-col md:flex-row items-center w-full pt-5 gap-x-5">
           <div className="w-[10rem] h-[1rem] bg-neutral-300 animate-pulse" />
         </div>
-        <div className="flex flex-row items-start w-full h-full gap-x-5">
+        <div className="flex flex-col md:flex-row items-start w-full h-full gap-x-0 md:gap-x-5 gap-y-10 md:gap-y-0">
           <div className="flex flex-col w-full h-full gap-y-5">
-            <div className="relative w-[506px] h-[450px] bg-neutral-300" />
+            <div className="relative w-full md:w-[506px] h-[450px] bg-neutral-300" />
             <div className="flex flex-row items-center justify-start w-full max-w-[506px] gap-x-5 overflow-y-auto">
               <div className="relative w-[100px] h-[75px] bg-neutral-300" />
               <div className="relative w-[100px] h-[75px] bg-neutral-300" />

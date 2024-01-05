@@ -2,8 +2,8 @@ import React from "react";
 
 export default function BrandSponsor(): JSX.Element {
   return (
-    <div className="flex flex-col items-center w-full bg-[#FAFAFA]">
-      <div className="flex flex-row items-center justify-between w-full max-w-6xl py-10 gap-x-10">
+    <div className="flex flex-col items-center w-full h-full bg-[#FAFAFA]">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-full md:max-w-6xl py-10 gap-x-10 gap-y-[5rem] md:gap-y-0">
         <div className="flex">
           <svg
             width="103"

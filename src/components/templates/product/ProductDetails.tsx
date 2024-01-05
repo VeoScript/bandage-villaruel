@@ -28,9 +28,9 @@ export default function ProductDetails(): JSX.Element {
   if (isLoading) return <ProductDescriptionLoader />;
 
   return (
-    <div className="flex flex-col items-center w-full h-full bg-[#FAFAFA]">
-      <div className="flex flex-col items-center w-full max-w-6xl h-full gap-y-5">
-        <div className="flex flex-row items-center w-full pt-5 gap-x-5">
+    <div className="flex flex-col items-center w-full h-full p-10 md:p-3 bg-[#FAFAFA]">
+      <div className="flex flex-col items-center w-full max-w-full md:max-w-6xl h-full gap-y-5">
+        <div className="flex flex-row items-center justify-center md:justify-start w-full pt-5 gap-x-5">
           <Link href="/" className="font-bold text-[14px]">
             Home
           </Link>
@@ -59,10 +59,10 @@ export default function ProductDetails(): JSX.Element {
             Shop
           </button>
         </div>
-        <div className="flex flex-row items-start w-full h-full gap-x-5">
+        <div className="flex flex-col md:flex-row items-center md:items-start w-full h-full gap-x-0 md:gap-x-5 gap-y-10 md:gap-y-0">
           <div className="flex flex-col w-full h-full gap-y-5">
             <Zoom>
-              <div className="relative w-[506px] h-[450px]">
+              <div className="relative w-full md:w-[506px] h-[450px]">
                 <Image
                   fill
                   className="object-cover"
@@ -74,7 +74,7 @@ export default function ProductDetails(): JSX.Element {
                 />
               </div>
             </Zoom>
-            <div className="flex flex-row items-center justify-start w-full max-w-[506px] gap-x-5 overflow-y-auto">
+            <div className="flex flex-row items-center justify-start w-full max-w-full md:max-w-[506px] gap-x-5 overflow-y-auto">
               {product.images.map((image: any, i: number) => (
                 <button
                   key={i}
@@ -97,7 +97,7 @@ export default function ProductDetails(): JSX.Element {
               ))}
             </div>
           </div>
-          <div className="flex flex-col items-center justify-between w-full h-[471px]">
+          <div className="flex flex-col items-center justify-start md:justify-between w-full h-[471px] gap-y-10 md:gap-y-0">
             <div className="flex flex-col items-start w-full gap-y-5">
               <h1 className="font-normal text-[20px] capitalize">{product.title}</h1>
               <div className="flex flex-row items-center justify-start gap-x-3">
@@ -114,8 +114,8 @@ export default function ProductDetails(): JSX.Element {
                 </span>
               </h3>
             </div>
-            <div className="flex flex-col items-start w-full py-5 gap-y-10 border-t border-neutral-200">
-              <div className="flex flex-row items-center justify-start w-full gap-x-3">
+            <div className="flex flex-col items-center md:items-start w-full py-10 md:py-5 gap-y-10 border-t border-neutral-200">
+              <div className="flex flex-row items-center justify-center md:justify-start w-full gap-x-3">
                 <button
                   type="button"
                   className="w-8 h-8 outline-none rounded-full bg-blue-500 hover:opacity-50"
@@ -137,10 +137,10 @@ export default function ProductDetails(): JSX.Element {
                   aria-label="Variant Button"
                 />
               </div>
-              <div className="flex flex-row items-center justify-start w-full gap-x-3">
+              <div className="flex flex-row items-center justify-center md:justify-start w-full gap-x-3">
                 <button
                   type="button"
-                  className="w-auto px-10 py-3 rounded-md font-bold text-[14px] text-white bg-accent-4 hover:opacity-50"
+                  className="flex-1 px-3 md:px-10 py-3 rounded-md font-bold text-[14px] text-white bg-accent-4 hover:opacity-50"
                 >
                   Select Options
                 </button>
@@ -214,14 +214,14 @@ export default function ProductDetails(): JSX.Element {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-center w-full max-w-6xl p-10 gap-x-10 border-b border-neutral-200">
-        <Link href="/" className="font-bold text-[14px] text-neutral-500">
+      <div className="flex flex-row items-center justify-center w-full max-w-full md:max-w-6xl p-5 md:p-10 gap-x-10 border-b border-neutral-200">
+        <Link href="/" className="font-bold text-[14px] text-center text-neutral-500">
           Description
         </Link>
-        <Link href="/" className="font-bold text-[14px] text-neutral-500">
+        <Link href="/" className="font-bold text-[14px] text-center text-neutral-500">
           Additional Information
         </Link>
-        <Link href="/" className="font-bold text-[14px] text-neutral-500">
+        <Link href="/" className="font-bold text-[14px] text-center text-neutral-500">
           Reviews <span className="text-green-600">(0)</span>
         </Link>
       </div>

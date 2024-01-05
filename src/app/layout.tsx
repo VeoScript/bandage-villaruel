@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 import "./globals.css";
 
