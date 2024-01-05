@@ -3,6 +3,7 @@
 import { Popover } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 import type { RootState } from "~/redux/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +14,6 @@ import {
   removeProduct,
   clearCart,
 } from "~/redux/slices/features/cartSlice";
-import clsx from "clsx";
 
 export default function CartMenu(): JSX.Element {
   const dispatch = useDispatch();

@@ -5,12 +5,14 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import testingReducer from "./slices/features/testingSlice";
 import cartReducer from "./slices/features/cartSlice";
+import wishlistReducer from "./slices/features/wishlistSlice";
 import productsReducer from "./slices/services/productsApi";
 
 export const store = configureStore({
   reducer: {
     testing: testingReducer,
     cart: cartReducer,
+    wishlist: wishlistReducer,
     [productsReducer.reducerPath]: productsReducer.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsReducer.middleware),
