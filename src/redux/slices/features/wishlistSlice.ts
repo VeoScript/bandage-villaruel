@@ -35,7 +35,7 @@ export const wishlistSlice = createSlice({
         );
 
         if (existingProductIndex !== -1) {
-          state.wishlists[existingProductIndex];
+          state.wishlists.splice(existingProductIndex, 1);
         } else {
           state.wishlists = [...state.wishlists, newWishlist];
         }
