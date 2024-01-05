@@ -8,11 +8,11 @@ export interface CartState {
   carts: any[];
 }
 
-let persistCarts;
+let persistCarts = [];
 
-let totalAmount;
+let totalAmount = 0;
 
-if (typeof window !== undefined) {
+if (typeof window !== "undefined") {
   persistCarts =
     localStorage.getItem("carts") !== null
       ? JSON.parse(localStorage.getItem("carts") as string)

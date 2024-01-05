@@ -7,9 +7,9 @@ export interface WishlistState {
   wishlists: any[];
 }
 
-let persistWishlists;
+let persistWishlists = [];
 
-if (typeof window !== undefined) {
+if (typeof window !== 'undefined') {
   persistWishlists =
     localStorage.getItem("wishlists") !== null
       ? JSON.parse(localStorage.getItem("wishlists") as string)
