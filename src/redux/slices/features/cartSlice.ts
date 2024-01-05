@@ -3,13 +3,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartState {
+  totalAmount: number;
   cart_count: number;
   carts: any[];
 }
 
+const persistCarts: any[] =
+  localStorage.getItem("carts") !== null ? JSON.parse(localStorage.getItem("carts") as string) : [];
+
+const totalAmount: number =
+  localStorage.getItem("totalAmount") !== null
+    ? JSON.parse(localStorage.getItem("totalAmount") as string)
+    : 0;
+
 const initialState: CartState = {
+  totalAmount: totalAmount,
   cart_count: 0,
-  carts: [],
+  carts: persistCarts,
 };
 
 export const cartSlice = createSlice({
@@ -26,47 +36,129 @@ export const cartSlice = createSlice({
         );
 
         if (existingProductIndex !== -1) {
-          state.carts[existingProductIndex].quantity += newProduct.quantity;
+          const existingProduct = state.carts[existingProductIndex];
+          const updatedQuantity = existingProduct.quantity + newProduct.quantity;
+
+          existingProduct.quantity = updatedQuantity;
+          existingProduct.price = existingProduct.price + newProduct.price * newProduct.quantity;
         } else {
-          state.carts = [...state.carts, newProduct];
+          const totalPriceForNewProduct = newProduct.price * newProduct.quantity;
+
+          state.carts = [
+            ...state.carts,
+            {
+              ...newProduct,
+              price: totalPriceForNewProduct,
+            },
+          ];
         }
       });
+
+      const subTotal = state.carts.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      state.totalAmount = subTotal;
+
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
     },
     changeQuantity: (state, action: PayloadAction<{ id: number; updatedQuantity: number }>) => {
       state.carts = state.carts.map((product) => {
         if (product.id === action.payload.id) {
+          const updatedQuantity = action.payload.updatedQuantity ?? 1;
+
+          if (updatedQuantity < 1) {
+            return product;
+          }
+
+          const pricePerUnit = product.price / product.quantity;
+          const updatedPrice = pricePerUnit * updatedQuantity;
           return {
             ...product,
-            quantity: action.payload.updatedQuantity ?? 1,
+            quantity: updatedQuantity,
+            price: updatedPrice,
           };
         }
         return product;
       });
+
+      const subTotal = state.carts.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      state.totalAmount = subTotal;
+
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
     },
     incrementQuantity: (state, action: PayloadAction<number>) => {
       state.carts = state.carts.map((product) => {
         if (product.id === action.payload) {
+          const updatedQuantity = product.quantity + 1;
+          const pricePerItem = product.price / product.quantity;
+          const updatedPrice = pricePerItem * updatedQuantity;
           return {
             ...product,
-            quantity: product.quantity + 1,
+            quantity: updatedQuantity,
+            price: updatedPrice,
           };
         }
         return product;
       });
+
+      const subTotal = state.carts.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      state.totalAmount = subTotal;
+
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
     },
     decrementQuantity: (state, action: PayloadAction<number>) => {
       state.carts = state.carts.map((product) => {
         if (product.id === action.payload && product.quantity > 1) {
+          const updatedQuantity = product.quantity - 1;
+          const pricePerItem = product.price / product.quantity;
+          const updatedPrice = pricePerItem * updatedQuantity;
           return {
             ...product,
-            quantity: product.quantity - 1,
+            quantity: updatedQuantity,
+            price: updatedPrice,
           };
         }
         return product;
       });
+
+      const subTotal = state.carts.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      state.totalAmount = subTotal;
+
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
     },
     removeProduct: (state, action: PayloadAction<number>) => {
       state.carts = state.carts.filter((product) => product.id !== action.payload);
+
+      const subTotal = state.carts.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      state.totalAmount = subTotal;
+
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
+    },
+    clearCart: (state) => {
+      state.carts = [];
+      state.cart_count = 0;
+      state.totalAmount = 0;
+
+      localStorage.setItem("carts", JSON.stringify([]));
+      localStorage.setItem("totalAmount", JSON.stringify(0));
     },
   },
 });
@@ -78,6 +170,7 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeProduct,
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -10,6 +10,7 @@ interface AddToCartProps {
   id: string;
   image: string;
   title: string;
+  price: number;
   quantity: number;
   className: string;
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export default function AddToCart({
   id,
   image,
   title,
+  price,
   quantity,
   className,
   children,
@@ -46,6 +48,7 @@ export default function AddToCart({
               id,
               image,
               title,
+              price,
               quantity,
             },
           ]),

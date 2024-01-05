@@ -11,14 +11,14 @@ import {
   incrementQuantity,
   decrementQuantity,
   removeProduct,
+  clearCart,
 } from "~/redux/slices/features/cartSlice";
+import clsx from "clsx";
 
 export default function CartMenu(): JSX.Element {
   const dispatch = useDispatch();
 
-  const { cart_count, carts } = useSelector((state: RootState) => state.cart);
-
-  console.log("carts", carts);
+  const { cart_count, carts, totalAmount } = useSelector((state: RootState) => state.cart);
 
   return (
     <Popover className="relative">
@@ -63,113 +63,154 @@ export default function CartMenu(): JSX.Element {
           </div>
         ) : (
           <>
-            {carts.map((cart: { id: string; image: string; title: string; quantity: number }) => (
-              <div
-                key={cart.id}
-                className="flex flex-row items-start justify-between w-full p-3 gap-x-5"
-              >
-                <div className="relative w-[50px] h-[50px] overflow-hidden rounded-md">
-                  <Image
-                    fill
-                    className="object-cover"
-                    src={cart.image}
-                    alt="Product thumbnail"
-                    sizes="(max-width: 50px) 100vw, (max-width: 50px) 50vw, 33vw"
-                    placeholder="blur"
-                    blurDataURL={cart.image}
-                  />
-                </div>
-                <div className="flex flex-1 flex-col items-start gap-y-3">
-                  <Link
-                    href={`/products/${cart.id}`}
-                    className="font-bold text-[16px] line-clamp-1 capitalize"
-                  >
-                    {cart.title}
-                  </Link>
-                  <div className="flex flex-row items-center w-full gap-x-1">
-                    <button
-                      type="button"
-                      className="flex flex-row items-center justify-center w-6 h-6 outline-none rounded-full border border-red-200 bg-accent-1 hover:opacity-50"
-                      onClick={() => {
-                        dispatch(decrementQuantity(cart.id as unknown as number));
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-red-500"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-                      </svg>
-                    </button>
-                    <input
-                      type="number"
-                      className="w-[4rem] outline-none border border-neutral-200 rounded-md text-center"
-                      min={1}
-                      value={cart.quantity}
-                      onChange={(e) => {
-                        dispatch(
-                          changeQuantity({
-                            id: cart.id as unknown as number,
-                            updatedQuantity:
-                              e.currentTarget.value === "" ? 1 : Number(e.currentTarget.value),
-                          }),
-                        );
-                      }}
-                    />
-                    <button
-                      type="button"
-                      className="flex flex-row items-center justify-center w-6 h-6 outline-none rounded-full border border-blue-200 bg-accent-1 hover:opacity-50"
-                      onClick={() => {
-                        dispatch(incrementQuantity(cart.id as unknown as number));
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-blue-500"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 4.5v15m7.5-7.5h-15"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="flex flex-row items-center justify-center w-10 h-10 outline-none rounded-full border border-neutral-200 bg-accent-1 hover:opacity-50"
-                  onClick={() => {
-                    dispatch(removeProduct(cart.id as unknown as number));
-                  }}
+            {carts.map(
+              (cart: {
+                id: string;
+                image: string;
+                title: string;
+                price: string;
+                quantity: number;
+              }) => (
+                <div
+                  key={cart.id}
+                  className="flex flex-row items-start justify-between w-full p-3 gap-x-5"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-5 h-5 text-neutral-500"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                  <div className="relative w-[50px] h-[50px] overflow-hidden rounded-md">
+                    <Image
+                      fill
+                      className="object-cover"
+                      src={cart.image}
+                      alt="Product thumbnail"
+                      sizes="(max-width: 50px) 100vw, (max-width: 50px) 50vw, 33vw"
+                      placeholder="blur"
+                      blurDataURL={cart.image}
                     />
-                  </svg>
-                </button>
-              </div>
-            ))}
+                  </div>
+                  <div className="flex flex-1 flex-col items-start gap-y-1">
+                    <Link
+                      href={`/products/${cart.id}`}
+                      className="font-bold text-[16px] line-clamp-1 capitalize"
+                    >
+                      {cart.title}
+                    </Link>
+                    <h2 className="font-bold text-[14px] text-neutral-500">
+                      $ {Number(cart.price).toFixed(2)}
+                    </h2>
+                    <div className="flex flex-row items-center w-full gap-x-1">
+                      <button
+                        type="button"
+                        className="flex flex-row items-center justify-center w-6 h-6 outline-none rounded-full border border-red-200 bg-accent-1 hover:opacity-50"
+                        onClick={() => {
+                          dispatch(decrementQuantity(cart.id as unknown as number));
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-4 h-4 text-red-500"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        className="w-[4rem] outline-none border border-neutral-200 rounded-md text-center"
+                        min={1}
+                        value={cart.quantity}
+                        onChange={(e) => {
+                          dispatch(
+                            changeQuantity({
+                              id: cart.id as unknown as number,
+                              updatedQuantity:
+                                e.currentTarget.value === "" ? 1 : Number(e.currentTarget.value),
+                            }),
+                          );
+                        }}
+                      />
+                      <button
+                        type="button"
+                        className="flex flex-row items-center justify-center w-6 h-6 outline-none rounded-full border border-blue-200 bg-accent-1 hover:opacity-50"
+                        onClick={() => {
+                          dispatch(incrementQuantity(cart.id as unknown as number));
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-4 h-4 text-blue-500"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 4.5v15m7.5-7.5h-15"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="flex flex-row items-center justify-center w-10 h-10 outline-none rounded-full border border-neutral-200 bg-accent-1 hover:opacity-50"
+                    onClick={() => {
+                      dispatch(removeProduct(cart.id as unknown as number));
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-5 h-5 text-neutral-500"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ),
+            )}
           </>
         )}
+        <div className="flex flex-row items-center justify-between w-full p-3 gap-x-3 border-t border-neutral-200">
+          <div className="flex flex-row items-center justify-start gap-x-1">
+            <h2 className="font-normal text-[12px] text-neutral-500">Total Amount:</h2>
+            <h2 className="font-bold text-[14px]">$ {Number(totalAmount).toFixed(2)}</h2>
+          </div>
+          <div className="flex flex-row items-center gap-x-2">
+            <button
+              disabled={carts.length == 0}
+              type="button"
+              className={clsx(
+                carts.length == 0 && "opacity-50",
+                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[14px] text-accent-2",
+              )}
+              onClick={() => dispatch(clearCart())}
+            >
+              Clear All
+            </button>
+            <button
+              disabled={carts.length == 0}
+              type="button"
+              className={clsx(
+                carts.length == 0 && "opacity-50",
+                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[14px] text-white bg-accent-4",
+              )}
+              onClick={() => dispatch(clearCart())}
+            >
+              Check out
+            </button>
+          </div>
+        </div>
       </Popover.Panel>
     </Popover>
   );
