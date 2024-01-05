@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
 import clsx from "clsx";
 import RateStars from "~/components/ui/RateStars";
 import AddToCart from "~/components/ui/buttons/AddToCart";
@@ -53,17 +56,19 @@ export default function ProductDetails(): JSX.Element {
         </div>
         <div className="flex flex-row items-start w-full h-full gap-x-5">
           <div className="flex flex-col w-full h-full gap-y-5">
-            <div className="relative w-[506px] h-[450px]">
-              <Image
-                fill
-                className="object-cover"
-                src={selectedImage ? selectedImage : product.thumbnail}
-                alt="Product thumbnail"
-                sizes="(max-width: 506px) 100vw, (max-width: 506px) 50vw, 33vw"
-                placeholder="blur"
-                blurDataURL={selectedImage ? selectedImage : product.thumbnail}
-              />
-            </div>
+            <Zoom>
+              <div className="relative w-[506px] h-[450px]">
+                <Image
+                  fill
+                  className="object-cover"
+                  src={selectedImage ? selectedImage : product.thumbnail}
+                  alt="Product thumbnail"
+                  sizes="(max-width: 506px) 100vw, (max-width: 506px) 50vw, 33vw"
+                  placeholder="blur"
+                  blurDataURL={selectedImage ? selectedImage : product.thumbnail}
+                />
+              </div>
+            </Zoom>
             <div className="flex flex-row items-center justify-start w-full max-w-[506px] gap-x-5 overflow-y-auto">
               {product.images.map((image: any, i: number) => (
                 <button
