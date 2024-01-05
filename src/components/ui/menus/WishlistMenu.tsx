@@ -17,19 +17,29 @@ export default function WishlistMenu(): JSX.Element {
   return (
     <Popover className="relative">
       <Popover.Button className="flex flex-row items-center gap-x-1 text-accent-4 outline-none">
-        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clipPath="url(#clip0_540_815)">
-            <path
-              d="M8.0002 2.74805L7.2832 2.01105C5.6002 0.281049 2.5142 0.878049 1.4002 3.05305C0.8772 4.07605 0.7592 5.55305 1.7142 7.43805C2.6342 9.25305 4.5482 11.427 8.0002 13.795C11.4522 11.427 13.3652 9.25305 14.2862 7.43805C15.2412 5.55205 15.1242 4.07605 14.6002 3.05305C13.4862 0.878049 10.4002 0.280049 8.7172 2.01005L8.0002 2.74805ZM8.0002 15C-7.3328 4.86805 3.2792 -3.03995 7.8242 1.14305C7.8842 1.19805 7.9432 1.25505 8.0002 1.31405C8.05662 1.2551 8.11533 1.19839 8.1762 1.14405C12.7202 -3.04195 23.3332 4.86705 8.0002 15Z"
-              fill="#23A6F0"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_540_815">
-              <rect width="16" height="16" fill="white" transform="translate(0.000305176)" />
-            </clipPath>
-          </defs>
-        </svg>
+        <div className="relative">
+          {wishlists.length > 0 && (
+            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-600" />
+          )}
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clipPath="url(#clip0_540_815)">
+              <path
+                d="M8.0002 2.74805L7.2832 2.01105C5.6002 0.281049 2.5142 0.878049 1.4002 3.05305C0.8772 4.07605 0.7592 5.55305 1.7142 7.43805C2.6342 9.25305 4.5482 11.427 8.0002 13.795C11.4522 11.427 13.3652 9.25305 14.2862 7.43805C15.2412 5.55205 15.1242 4.07605 14.6002 3.05305C13.4862 0.878049 10.4002 0.280049 8.7172 2.01005L8.0002 2.74805ZM8.0002 15C-7.3328 4.86805 3.2792 -3.03995 7.8242 1.14305C7.8842 1.19805 7.9432 1.25505 8.0002 1.31405C8.05662 1.2551 8.11533 1.19839 8.1762 1.14405C12.7202 -3.04195 23.3332 4.86705 8.0002 15Z"
+                fill="#23A6F0"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_540_815">
+                <rect width="16" height="16" fill="white" transform="translate(0.000305176)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
         <span className="font-semibold">{wishlist_count}</span>
       </Popover.Button>
 
@@ -50,10 +60,10 @@ export default function WishlistMenu(): JSX.Element {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
               />
             </svg>
-            <p className="font-bold text-sm text-neutral-300">No Products Yet</p>
+            <p className="font-bold text-sm text-neutral-300">No Saved Products Yet</p>
           </div>
         ) : (
           <>
