@@ -153,6 +153,7 @@ export default function ProductDetails(): JSX.Element {
                   id={product.id}
                   image={product.thumbnail}
                   title={product.title}
+                  price={Number(product.price - product.discountPercentage)}
                   quantity={1}
                 >
                   <svg
