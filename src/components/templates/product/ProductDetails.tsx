@@ -119,18 +119,22 @@ export default function ProductDetails(): JSX.Element {
                 <button
                   type="button"
                   className="w-8 h-8 outline-none rounded-full bg-blue-500 hover:opacity-50"
+                  aria-label="Variant Button"
                 />
                 <button
                   type="button"
                   className="w-8 h-8 outline-none rounded-full bg-green-500 hover:opacity-50"
+                  aria-label="Variant Button"
                 />
                 <button
                   type="button"
                   className="w-8 h-8 outline-none rounded-full bg-orange-500 hover:opacity-50"
+                  aria-label="Variant Button"
                 />
                 <button
                   type="button"
                   className="w-8 h-8 outline-none rounded-full bg-accent-2 hover:opacity-50"
+                  aria-label="Variant Button"
                 />
               </div>
               <div className="flex flex-row items-center justify-start w-full gap-x-3">
@@ -186,6 +190,7 @@ export default function ProductDetails(): JSX.Element {
                 <button
                   type="button"
                   className="flex flex-row items-center justify-center w-10 h-10 outline-none rounded-full border border-neutral-200 bg-accent-1 hover:opacity-50"
+                  aria-label="View"
                 >
                   <svg
                     width="20"

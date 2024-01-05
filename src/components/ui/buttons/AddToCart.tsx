@@ -41,6 +41,7 @@ export default function AddToCart({
   return (
     <button
       type="button"
+      aria-label="Add to Cart"
       className={className}
       onClick={() => {
         dispatch(
