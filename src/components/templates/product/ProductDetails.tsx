@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -6,13 +7,16 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
 import clsx from "clsx";
-import ProductDescriptionLoader from "~/components/ui/skeletons/ProductDescriptionLoader";
-import RateStars from "~/components/ui/RateStars";
-import AddToCart from "~/components/ui/buttons/AddToCart";
-import AddToWishlist from "~/components/ui/buttons/AddToWishlist";
 
 import { useParams } from "next/navigation";
 import { useGetProductByIdQuery } from "~/redux/slices/services/productsApi";
+
+const ProductDescriptionLoader = dynamic(
+  () => import("~/components/ui/skeletons/ProductDescriptionLoader"),
+);
+const RateStars = dynamic(() => import("~/components/ui/RateStars"));
+const AddToCart = dynamic(() => import("~/components/ui/buttons/AddToCart"));
+const AddToWishlist = dynamic(() => import("~/components/ui/buttons/AddToWishlist"));
 
 export default function ProductDetails(): JSX.Element {
   const { productId } = useParams();

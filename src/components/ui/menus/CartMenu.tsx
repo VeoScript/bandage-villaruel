@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 import type { RootState } from "~/redux/store";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "~/redux/slices/features/toastSlice";
 import {
   changeQuantity,
   incrementQuantity,
@@ -215,7 +216,15 @@ export default function CartMenu(): JSX.Element {
                 carts.length == 0 && "opacity-50",
                 "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[14px] text-white bg-accent-4",
               )}
-              onClick={() => dispatch(clearCart())}
+              onClick={() => {
+                dispatch(
+                  toast({
+                    isShow: true,
+                    message: "Checkout Successfully!",
+                  }),
+                );
+                dispatch(clearCart());
+              }}
             >
               Check out
             </button>
