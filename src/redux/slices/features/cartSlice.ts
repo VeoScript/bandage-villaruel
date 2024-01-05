@@ -8,13 +8,20 @@ export interface CartState {
   carts: any[];
 }
 
-const persistCarts: any[] =
-  localStorage.getItem("carts") !== null ? JSON.parse(localStorage.getItem("carts") as string) : [];
+let persistCarts;
 
-const totalAmount: number =
-  localStorage.getItem("totalAmount") !== null
-    ? JSON.parse(localStorage.getItem("totalAmount") as string)
-    : 0;
+let totalAmount;
+
+if (typeof window !== undefined) {
+  persistCarts =
+    localStorage.getItem("carts") !== null
+      ? JSON.parse(localStorage.getItem("carts") as string)
+      : [];
+  totalAmount =
+    localStorage.getItem("totalAmount") !== null
+      ? JSON.parse(localStorage.getItem("totalAmount") as string)
+      : 0;
+}
 
 const initialState: CartState = {
   totalAmount: totalAmount,

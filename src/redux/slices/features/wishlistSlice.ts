@@ -7,10 +7,14 @@ export interface WishlistState {
   wishlists: any[];
 }
 
-const persistWishlists: any[] =
-  localStorage.getItem("wishlists") !== null
-    ? JSON.parse(localStorage.getItem("wishlists") as string)
-    : [];
+let persistWishlists;
+
+if (typeof window !== undefined) {
+  persistWishlists =
+    localStorage.getItem("wishlists") !== null
+      ? JSON.parse(localStorage.getItem("wishlists") as string)
+      : [];
+}
 
 const initialState: WishlistState = {
   wishlist_count: 0,
@@ -53,6 +57,7 @@ export const wishlistSlice = createSlice({
   },
 });
 
-export const { setWishlistCount, setWishlists, removeWishlist, clearWishlists } = wishlistSlice.actions;
+export const { setWishlistCount, setWishlists, removeWishlist, clearWishlists } =
+  wishlistSlice.actions;
 
 export default wishlistSlice.reducer;
