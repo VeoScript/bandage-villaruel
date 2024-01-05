@@ -6,6 +6,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
 import clsx from "clsx";
+import ProductDescriptionLoader from "~/components/ui/skeletons/ProductDescriptionLoader";
 import RateStars from "~/components/ui/RateStars";
 import AddToCart from "~/components/ui/buttons/AddToCart";
 import AddToWishlist from "~/components/ui/buttons/AddToWishlist";
@@ -20,7 +21,7 @@ export default function ProductDetails(): JSX.Element {
 
   const { data: product, isLoading } = useGetProductByIdQuery(productId as unknown as number);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <ProductDescriptionLoader />;
 
   return (
     <div className="flex flex-col items-center w-full h-full bg-[#FAFAFA]">
