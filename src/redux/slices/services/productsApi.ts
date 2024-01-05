@@ -14,17 +14,16 @@ export const productsSlice = createApi({
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      // Always merge incoming data to the cache entry
-      merge: (currentCache, newItems) => {
+      // Update cache with new data or replace the cache if it's the first page
+      merge: (currentCache, newItems, { arg }) => {
+        if (arg.pageNumber === 1) {
+          return newItems;
+        }
         currentCache.products.push(...newItems.products);
       },
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {
-        if (currentArg?.pageNumber === 1) {
-          return false;
-        } else {
-          return currentArg?.pageNumber !== previousArg?.pageNumber;
-        }
+        return currentArg?.pageNumber !== previousArg?.pageNumber;
       },
     }),
     getProductById: builder.query<any, number>({

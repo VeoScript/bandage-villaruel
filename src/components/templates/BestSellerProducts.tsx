@@ -35,7 +35,7 @@ export default function BestSellerProducts({
           </h2>
         </div>
       )}
-      <div className="flex flex-wrap justify-center w-full gap-5">
+      <div className="flex flex-wrap items-start justify-center w-full gap-5">
         {isLoading ? (
           <ProductListLoader />
         ) : (
@@ -44,20 +44,20 @@ export default function BestSellerProducts({
               <Link
                 key={product.id}
                 href={`/products/${product.id}`}
-                className="flex flex-col items-center w-[183px] gap-y-5"
+                className="flex flex-col items-center w-[295px] md:w-[183px] gap-y-5"
               >
-                <div className="relative w-[183px] h-[238px]">
+                <div className="relative w-[295px] md:w-[183px] h-[360px] md:h-[238px] bg-neutral-200">
                   <Image
                     priority
                     fill
                     className="object-cover"
                     src={product.thumbnail}
                     alt="Image3"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 183px) 100vw, (max-width: 183px) 50vw, 33vw"
                   />
                 </div>
                 <div className="flex flex-col items-center w-full gap-y-3">
-                  <h2 className="font-bold text-center text-[16px]">{product.title}</h2>
+                  <h2 className="font-bold text-center text-[16px] capitalize">{product.title}</h2>
                   <h3 className="font-bold text-center text-[14px] text-neutral-500">
                     {product.brand}
                   </h3>

@@ -31,8 +31,8 @@ export default function AddToCart({
   const { carts } = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
-    if (carts.length) {
-      dispatch(setCartCount(carts.length));
+    if (carts) {
+      dispatch(setCartCount());
     }
 
     return () => {};

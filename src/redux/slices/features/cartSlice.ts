@@ -33,8 +33,12 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCartCount: (state, action: PayloadAction<number>) => {
-      state.cart_count = action.payload;
+    setCartCount: (state) => {
+      const totalQuantity = state.carts.reduce((count, cartProduct) => {
+        return count + cartProduct.quantity;
+      }, 0);
+
+      state.cart_count = totalQuantity;
     },
     setCarts: (state, action: PayloadAction<any[]>) => {
       action.payload.forEach((newProduct) => {

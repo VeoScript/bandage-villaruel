@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Popover } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -15,6 +16,7 @@ import {
   decrementQuantity,
   removeProduct,
   clearCart,
+  setCartCount,
 } from "~/redux/slices/features/cartSlice";
 
 interface CartMenuProps {
@@ -28,6 +30,14 @@ export default function CartMenu({ className, iconClassName }: CartMenuProps): J
   const dispatch = useDispatch();
 
   const { cart_count, carts, totalAmount } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    if (carts) {
+      dispatch(setCartCount());
+    }
+
+    return () => {};
+  }, [carts, dispatch]);
 
   return (
     <Popover className="static md:relative">
@@ -219,17 +229,17 @@ export default function CartMenu({ className, iconClassName }: CartMenuProps): J
           )}
         </div>
         <div className="flex flex-row items-center justify-between w-full p-3 gap-x-3 border-t border-neutral-200">
-          <div className="flex flex-row items-center justify-start gap-x-1">
+          <div className="flex flex-row items-center justify-start w-full gap-x-1">
             <h2 className="font-normal text-[12px] text-neutral-500">Total Amount:</h2>
-            <h2 className="font-bold text-[14px]">$ {Number(totalAmount).toFixed(2)}</h2>
+            <h2 className="font-bold text-[14px]">${Number(totalAmount).toFixed(2)}</h2>
           </div>
-          <div className="flex flex-row items-center gap-x-2">
+          <div className="flex flex-row items-center justify-end w-full gap-x-2">
             <button
               disabled={carts.length == 0}
               type="button"
               className={clsx(
                 carts.length == 0 && "opacity-50",
-                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[14px] text-accent-2",
+                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[12px] md:text-[14px] text-accent-2",
               )}
               onClick={() => dispatch(clearCart())}
             >
@@ -240,7 +250,7 @@ export default function CartMenu({ className, iconClassName }: CartMenuProps): J
               type="button"
               className={clsx(
                 carts.length == 0 && "opacity-50",
-                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[14px] text-white bg-accent-4",
+                "px-3 py-1 rounded-md outline-none border border-neurtal-200 font-semibold text-[12px] md:text-[14px] text-white bg-accent-4",
               )}
               onClick={() => {
                 dispatch(

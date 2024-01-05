@@ -3,7 +3,7 @@ import RateStars from "../ui/RateStars";
 
 export default function Testimony() {
   return (
-    <div className="flex flex-row items-center justify-center w-full max-w-6xl h-screen p-5 gap-y-[5rem]">
+    <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl h-screen my-[5rem] md:my-0 p-5 gap-y-[5rem]">
       <div className="flex flex-col items-center w-full max-w-full gap-y-10">
         <h1 className="font-bold text-[24px]">What they say about us</h1>
         <div className="flex flex-col items-center w-full gap-y-5">

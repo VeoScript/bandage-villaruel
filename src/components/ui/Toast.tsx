@@ -27,7 +27,7 @@ export default function Toast(): JSX.Element {
   return (
     <>
       {isShowToast && (
-        <div className="absolute top-1/2 z-50 flex flex-col items-center justify-center w-[20rem] h-auto p-10 rounded-xl text-white bg-black bg-opacity-50">
+        <div className="fixed top-[50%] left-[50%] -translate-x-[50%] z-50 flex flex-col items-center justify-center w-auto max-w-xl h-auto p-5 rounded-xl text-white bg-black bg-opacity-70">
           <h3 className="font-bold text-[14px] text-center">{message}</h3>
         </div>
       )}

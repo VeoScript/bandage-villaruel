@@ -1,6 +1,6 @@
 export default function BestServices(): JSX.Element {
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-6xl h-screen p-5 gap-y-[5rem]">
+    <div className="flex flex-col items-center justify-center w-full max-w-6xl h-screen my-[5rem] md:my-0 p-5 gap-y-[5rem]">
       <div className="flex flex-col items-center w-full gap-y-3">
         <h2 className="font-normal text-[20px] text-neutral-500">Featured Products</h2>
         <h2 className="font-bold text-[24px] text-accent-2 uppercase">The Best Services</h2>
@@ -8,7 +8,7 @@ export default function BestServices(): JSX.Element {
           Problems trying to resolve the conflict between
         </h2>
       </div>
-      <div className="flex flex-row items-center justify-between w-full">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full gap-y-[5rem] md:gap-y-0">
         <div className="flex flex-col items-center w-[315px] gap-y-3">
           <svg
             className="w-[72px] h-[72px]"

@@ -10,14 +10,16 @@ export default function Footer() {
     <div className="flex flex-col items-center w-full">
       <div
         className={clsx(
-          pathname === "/" ? " bg-[#FAFAFA] px-[195px]" : "max-w-6xl bg-accent-1 border-b border-neutral-200",
-          "flex flex-row items-center justify-between w-full py-10",
+          pathname === "/"
+            ? " bg-[#FAFAFA] px-10 md:px-[195px]"
+            : "max-w-6xl px-10 md:px-0 bg-accent-1 border-b border-neutral-200",
+          "flex flex-col md:flex-row items-start md:items-center justify-between w-full py-10 gap-y-5 md:gap-y-0",
         )}
       >
         <div className="flex flex-row items-center justify-start w-full">
           <Logo />
         </div>
-        <div className="flex flex-row items-center justify-end w-full gap-x-5">
+        <div className="flex flex-row items-center justify-start md:justify-end w-full gap-x-5">
           <Link href="/" aria-label="Facebook">
             <svg
               width="25"
@@ -64,7 +66,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <div className="flex flex-row items-start justify-center w-full px-[195px] py-[25px] gap-x-3">
+      <div className="flex flex-col md:flex-row items-start justify-start md:justify-center w-full px-10 md:px-[195px] py-[25px] gap-x-0 md:gap-x-3 gap-y-10 md:gap-y-0">
         <div className="flex flex-col items-start w-full gap-y-3">
           <p className="font-bold text-[16px]">Company Info</p>
           <div className="flex flex-col items-start w-full gap-y-1">
@@ -140,11 +142,11 @@ export default function Footer() {
               <input
                 type="text"
                 placeholder="Your Email"
-                className="p-5 outline-none text-[14px] bg-neutral-50"
+                className="w-full md:w-auto p-5 outline-none text-[14px] bg-neutral-50"
               />
               <button
                 type="button"
-                className="p-5 outline-none text-[14px] text-white bg-accent-4 hover:opacity-50"
+                className="w-auto p-5 outline-none text-[14px] text-white bg-accent-4 hover:opacity-50"
               >
                 Subscribe
               </button>
@@ -153,9 +155,9 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-start w-full px-[195px] py-[25px] bg-[#FAFAFA]">
-        <p className="font-semibold text-[14px] text-neutral-500">
-          Made With Love By Finland All Right Reserved{" "}
+      <div className="flex flex-row items-center justify-start w-full px-10 md:px-[195px] py-[25px] bg-[#FAFAFA]">
+        <p className="font-semibold text-[14px] text-center text-neutral-500">
+          Made With Love By Finland All Right Reserved
         </p>
       </div>
     </div>

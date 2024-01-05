@@ -11,7 +11,7 @@ export default function FeaturedPosts(): JSX.Element {
         <h2 className="font-semibold text-[14px] text-accent-4">Practice Advice</h2>
         <h2 className="font-bold text-[40px] text-accent-2 uppercase">Featured Posts</h2>
       </div>
-      <div className="flex flex-row items-center justify-center w-full gap-x-5">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-x-0 md:gap-x-5 gap-y-5 md:gap-y-0">
         {featuredProducts.map(
           (
             featured: {

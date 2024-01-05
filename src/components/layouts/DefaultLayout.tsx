@@ -16,7 +16,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps): JSX.Ele
   const isLazyLoad = useLazyLoadOnScroll();
 
   return (
-    <div className="flex flex-col items-center w-full h-full overflow-y-auto overflow-x-hidden">
+    <div className="relative flex flex-col items-center w-full h-full overflow-y-auto overflow-x-hidden">
       <NavBar />
       <Toast />
       {children}

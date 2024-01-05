@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Popover } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -8,7 +9,7 @@ import clsx from "clsx";
 
 import type { RootState } from "~/redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { removeWishlist, clearWishlists } from "~/redux/slices/features/wishlistSlice";
+import { removeWishlist, clearWishlists, setWishlistCount } from "~/redux/slices/features/wishlistSlice";
 
 interface WishlistMenuProps {
   className?: string;
@@ -21,6 +22,14 @@ export default function WishlistMenu({ className, iconClassName }: WishlistMenuP
   const dispatch = useDispatch();
 
   const { wishlist_count, wishlists } = useSelector((state: RootState) => state.wishlist);
+  
+  useEffect(() => {
+    if (wishlists) {
+      dispatch(setWishlistCount(wishlists.length));
+    }
+
+    return () => {};
+  }, [wishlists, dispatch]);
 
   return (
     <Popover className="static md:relative">
