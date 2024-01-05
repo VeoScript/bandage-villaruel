@@ -6,6 +6,7 @@ import clsx from "clsx";
 
 import type { RootState } from "~/redux/store";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "~/redux/slices/features/toastSlice";
 import { setWishlistCount, setWishlists } from "~/redux/slices/features/wishlistSlice";
 
 interface AddToWishlistProps {
@@ -53,6 +54,14 @@ export default function AddToWishlist({
               price,
             },
           ]),
+        );
+        dispatch(
+          toast({
+            isShow: true,
+            message: hasSaved
+              ? "Removed to wishlist successfully!"
+              : "Added to wishlist successfully!",
+          }),
         );
       }}
     >

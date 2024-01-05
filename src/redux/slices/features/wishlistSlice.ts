@@ -22,7 +22,7 @@ const initialState: WishlistState = {
 };
 
 export const wishlistSlice = createSlice({
-  name: "cart",
+  name: "wishlist",
   initialState,
   reducers: {
     setWishlistCount: (state, action: PayloadAction<number>) => {

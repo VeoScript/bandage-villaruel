@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import type { RootState } from "~/redux/store";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "~/redux/slices/features/toastSlice";
 import { setCartCount, setCarts } from "~/redux/slices/features/cartSlice";
 
 interface AddToCartProps {
@@ -52,6 +53,12 @@ export default function AddToCart({
               quantity,
             },
           ]),
+        );
+        dispatch(
+          toast({
+            isShow: true,
+            message: "Added to cart successfully!",
+          }),
         );
       }}
     >
