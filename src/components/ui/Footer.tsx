@@ -18,7 +18,7 @@ export default function Footer() {
           <Logo />
         </div>
         <div className="flex flex-row items-center justify-end w-full gap-x-5">
-          <Link href="/">
+          <Link href="/" aria-label="Facebook">
             <svg
               width="25"
               height="24"
@@ -34,7 +34,7 @@ export default function Footer() {
               />
             </svg>
           </Link>
-          <Link href="/">
+          <Link href="/" aria-label="Instagram">
             <svg
               width="25"
               height="24"
@@ -48,7 +48,7 @@ export default function Footer() {
               />
             </svg>
           </Link>
-          <Link href="/">
+          <Link href="/" aria-label="Twitter/X">
             <svg
               width="25"
               height="20"

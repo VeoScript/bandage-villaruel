@@ -11,7 +11,7 @@ export default function MainBanner(): JSX.Element {
             className="object-fill"
             src="/images/image1.webp"
             alt="Image1"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 451px) 100vw, (max-width: 451px) 50vw, 33vw"
             placeholder="blur"
             blurDataURL="/images/image1.webp"
           />
@@ -30,7 +30,7 @@ export default function MainBanner(): JSX.Element {
               className="object-fill"
               src="/images/image2.webp"
               alt="Image2"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 678px) 100vw, (max-width: 678px) 50vw, 33vw"
               placeholder="blur"
               blurDataURL="/images/image2.webp"
             />
@@ -49,7 +49,7 @@ export default function MainBanner(): JSX.Element {
                 className="object-fill"
                 src="/images/image3.webp"
                 alt="Image3"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 331px) 100vw, (max-width: 331px) 50vw, 33vw"
                 placeholder="blur"
                 blurDataURL="/images/image3.webp"
               />
@@ -67,7 +67,7 @@ export default function MainBanner(): JSX.Element {
                 className="object-fill"
                 src="/images/image4.webp"
                 alt="Image4"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 331px) 100vw, (max-width: 331px) 50vw, 33vw"
                 placeholder="blur"
                 blurDataURL="/images/image4.webp"
               />

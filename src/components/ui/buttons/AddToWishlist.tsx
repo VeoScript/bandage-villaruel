@@ -43,6 +43,7 @@ export default function AddToWishlist({
   return (
     <button
       type="button"
+      aria-label="Add to Wishlist"
       className={clsx(hasSaved && "text-red-500 bg-red-100", className)}
       onClick={() => {
         dispatch(
